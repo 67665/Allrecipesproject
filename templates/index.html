@@ -5,6 +5,14 @@
 <head>
     <title>Recipe Finder</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+  body {
+    background-image: url("{{ url_for('static', filename='cakes.png') }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+</style>
 </head>
 
 <body>
@@ -32,7 +40,8 @@ Liczba znalezionych przepisów: {{ przepisy | length }}
 <h2>Recipes</h2>
 {% for p in przepisy %}
 <div class="recipe">
-    <h3 id="title">{{ p.tytul }}</h3>
+    <!--<h3 id="title">{{ p.tytul }}</h3>-->
+    <h3 id="title"><a href="{{ p.link }}" >{{ p.tytul }}</a></h3>
 
     <img src="{{ p.obrazek }}" alt="recipe image" id="image" style="width: 50%">
 
@@ -41,10 +50,11 @@ Liczba znalezionych przepisów: {{ przepisy | length }}
     <h3>Ingredients</h3>
     <ul id="content">
         {% for s in p.skl %}
-            <li>{{ s }}<br> <br/></li>
+            <li> 🍰 {{ s }}<br> <br/></li>
         {% endfor %}
     </ul>
     <h3>Directions</h3>
+
     <ul id="content">
         {% for w in p.wyk %}
             <li>{{ w }}<br> <br/></li>
